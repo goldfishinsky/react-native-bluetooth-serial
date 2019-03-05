@@ -361,7 +361,8 @@ public class RCTBluetoothSerialModule extends ReactContextBaseJavaModule impleme
      */
     public void writeToDevice(String message, Promise promise) {
         if (D) Log.d(TAG, "Write " + message);
-        byte[] data = Base64.decode(message, Base64.DEFAULT);
+        byte[] data = message.getBytes();
+        // byte[] data = Base64.decode(message, Base64.DEFAULT);
         mBluetoothService.write(data);
         promise.resolve(true);
     }
